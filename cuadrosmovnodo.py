@@ -12,6 +12,11 @@ def main():
        },
        ns = True, host="192.168.0.7"
    )
+
+   #Added this
+
+   for i in range (0,3):
+       print(i)
    
    daemon = Pyro4.Daemon()
    ns = Pyro4.locateNS()
