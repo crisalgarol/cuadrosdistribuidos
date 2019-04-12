@@ -10,7 +10,7 @@ def main():
        {
            Cuadro: "cuadroNodo"
        },
-       ns = True, host="192.168.0.2"
+       ns = True, host="192.168.0.7"
    )
    
    daemon = Pyro4.Daemon()
