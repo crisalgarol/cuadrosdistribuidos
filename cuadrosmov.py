@@ -1,29 +1,56 @@
-from __future__ import print_function
+import pygame, sys, Pyro4
+from pygame.locals import *
 from cuadro import Cuadro
-import Pyro4
-import pygame, sys
 import objectsConstantName
 
 def main():
 
-   #Constants for object exchange
-   #
-   #    
-   Pyro4.Daemon.serveSimple(
-       {
-           Cuadro: "cuadroNodo"
-       },
-       ns = True, host="192.168.0.2"
-   )
-   daemon = Pyro4.Daemon()
-   ns = Pyro4.locateNS()
-   uriMiCuadro = daemon.register(Cuadro)
-   ns.register(objectsConstantName.CUADRO_REFERENCE, uriMiCuadro)
-   daemon.requestLoop()
 
+	miCuadro = Pyro4.Proxy("PYRO:"+objectsConstantName.CUADRO_REFERENCE)
 
+	ventana = pygame.display.set_mode((1000, 600))
+	pygame.display.set_caption("Salomon OS")
+
+	gameisExecuting = True
+
+	while gameisExecuting:
+    	for event in pygame.event.get():
+        	if event.type == pygame.QUIT:
+            	gameisExecuting = False
+
+    	#Update window frames cleaning up
+    	ventana.fill((255,255,255))
+   	 
+    	#get the current active key
+    	activeKey = pygame.key.get_pressed()
+
+    	#Close with x
+    	if activeKey[pygame.K_x]:
+        	gameisExecuting = False
+
+    	if activeKey[pygame.K_RIGHT]:
+        	miCuadro.move(1,0)
+    	elif activeKey[pygame.K_LEFT]:
+        	miCuadro.move(-1,0)
+    	elif activeKey[pygame.K_UP]:
+        	miCuadro.move(0,-1)
+    	elif activeKey[pygame.K_DOWN]:
+        	miCuadro.move(0,1)
+
+    	print("img")
+    	miCuadro.getimage()
+    	#print("rect")
+    	#miCuadro.getrectangulo()
+
+    	#ventana.blit(miCuadro.getimage(), miCuadro.getrectangulo())
+    	pygame.display.update()
+   	 
+
+	pygame.quit()
+	quit()
 
 if __name__ == "__main__":
-   main()
+	main()
+
 
 
