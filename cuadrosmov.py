@@ -37,13 +37,17 @@ def main():
 
         try:
             imgn = pygame.image.fromstring(miCuadro.getimage(), "RGB")
+            print('Si se pudo recibir la imagen')
         except:
-            print('Error al convertir a imagen ')
+            pass
+            ##print('Error al convertir a imagen ')
 
         try:
             rectangulopt = pygame.image.fromstring(miCuadro.getrectangulo(), "RGB")
+            print("Si se pudo recibir la imagenss")
         except:
-            print('Error al convertir a rectangulo')
+            pass
+            #print('Error al convertir a rectangulo')
 
         #ventana.blit(miCuadro.getimage(), miCuadro.getrectangulo())
         pygame.display.update()
