@@ -1,2 +1,2 @@
 #Square reference
-CUADRO_REFERENCE = "cuadro_reference"
+CUADRO_REFERENCE = "cuadro_nodo"

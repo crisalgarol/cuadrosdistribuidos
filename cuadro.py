@@ -13,33 +13,19 @@ class Cuadro(object):
     self.rectangulo.x = 100
     self.rectangulo.y = 100
     self.speed = 1
+    self.imageString = ""
 
   def move(self, xdir, ydir):
+    print('------Called MOVE()------')
     self.rectangulo.x += xdir*self.speed
     self.rectangulo.y += ydir*self.speed
     self.image.fill((255,0,0))
 
   def getimage(self):
-    return self.image
-
-  """def __getstate__(self):
-       state = self.__dict__.copy()
-       surface = state.pop("surface")
-       state["surface-string"] = (pygame.image.tostring(surface, "RGB"). surface.get:size())
-       return state
-
-   def __setstate__(self,state):
-       surface_string, size = state.pop("surface_string")
-       state["surface"] = pygame.image.fromString(surface_string, size, "RGB")
-       self.__dict__.update(state)"""
+    return pygame.image.tostring(image, "RGB")
 
   def getrectangulo(self):
-    return self.rectangulo
-  
-    def getspeed(self):
+    return pygame.image.toString(image, "RGB")
+
+  def getspeed(self):
       return self.speed
-
-
-  
-
-

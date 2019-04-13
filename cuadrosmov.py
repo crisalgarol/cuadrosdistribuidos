@@ -4,7 +4,7 @@ from cuadro import Cuadro
 import objectsConstantName
 
 def main():
-    miCuadro = Pyro4.Proxy("PYRO:"+objectsConstantName.CUADRO_REFERENCE)
+    miCuadro = Pyro4.Proxy("PYRONAME:"+objectsConstantName.CUADRO_REFERENCE)
 
     ventana = pygame.display.set_mode((1000, 600))
     pygame.display.set_caption("Salomon OS")
@@ -18,7 +18,7 @@ def main():
 
         #Update window frames cleaning up
         ventana.fill((255,255,255))
-   	 
+
         #get the current active key
         activeKey = pygame.key.get_pressed()
 
@@ -35,10 +35,15 @@ def main():
         elif activeKey[pygame.K_DOWN]:
             miCuadro.move(0,1)
 
-        print("img")
-        miCuadro.getimage()
-        #print("rect")
-        #miCuadro.getrectangulo()
+        try:
+            imgn = pygame.image.fromstring(miCuadro.getimage(), "RGB")
+        except:
+            print('Error al convertir a imagen ')
+
+        try:
+            rectangulopt = pygame.image.fromstring(miCuadro.getrectangulo(), "RGB")
+        except:
+            print('Error al convertir a rectangulo')
 
         #ventana.blit(miCuadro.getimage(), miCuadro.getrectangulo())
         pygame.display.update()
@@ -48,6 +53,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
