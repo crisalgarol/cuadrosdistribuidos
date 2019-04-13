@@ -22,7 +22,13 @@ class Cuadro(object):
     self.image.fill((255,0,0))
 
   def getimage(self):
-    return pygame.image.tostring(image, "RGB")
+
+    objtr = ""
+    
+    try:
+        objtr = pygame.image.tostring(image, "RGB")
+
+    return objtr
 
   def getrectangulo(self):
     return pygame.image.toString(image, "RGB")
