@@ -24,9 +24,11 @@ class Cuadro(object):
   def getimage(self):
 
     objtr = ""
-    
+
     try:
         objtr = pygame.image.tostring(image, "RGB")
+    except Exception as e:
+        print(str(e))
 
     return objtr
 
